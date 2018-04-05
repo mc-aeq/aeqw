@@ -1,5 +1,8 @@
 aeqw - aeqd Wallet
 =========
+[![Build Status](https://travis-ci.org/mc-aeq/aeqw.png?branch=master)](https://travis-ci.org/mc-aeq/aeqw)
+[![ISC License](http://img.shields.io/badge/license-ISC-blue.svg)](http://copyfree.org)
+[![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg)](https://godoc.org/github.com/mc-aeq/aeqw)
 
 aeqw is a daemon handling Æquator wallet functionality for a single user. It's a fork from [decred/dcrwallet] and acts as both an RPC client to aeqd and an RPC server for wallet clients and legacy RPC applications.
 
