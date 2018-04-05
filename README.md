@@ -1,4 +1,5 @@
 <img align="left" width="100" height="100" src="https://aequator.io/AEC_Logo_Final_RGB.svg">
+
 aeqw - aeqd Wallet
 =========
 [![Build Status](https://travis-ci.org/mc-aeq/aeqw.png?branch=master)](https://travis-ci.org/mc-aeq/aeqw)
