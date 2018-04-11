@@ -258,7 +258,7 @@ func (s *Server) requireChainClient() (*chain.RPCClient, bool) {
 }
 
 // handlerClosure creates a closure function for handling requests of the given
-// method.  This may be a request that is handled directly by dcrwallet, or
+// method.  This may be a request that is handled directly by aeqw, or
 // a chain server request that is handled by passing the request down to dcrd.
 //
 // NOTE: These handlers do not handle special cases, such as the authenticate
@@ -440,7 +440,7 @@ out:
 				log.Infof("RPC method stop invoked by client %s",
 					remoteAddr(ctx))
 				resp := makeResponse(req.ID,
-					"dcrwallet stopping.", nil)
+					"aeqw stopping.", nil)
 				mresp, err := json.Marshal(resp)
 				// Expected to never fail.
 				if err != nil {
@@ -592,7 +592,7 @@ func (s *Server) postClientRPC(w http.ResponseWriter, r *http.Request) {
 	case "stop":
 		log.Infof("RPC method stop invoked by client %s", r.RemoteAddr)
 		stop = true
-		res = "dcrwallet stopping"
+		res = "aeqw stopping"
 	default:
 		res, jsonErr = s.handlerClosure(ctx, &req)()
 	}

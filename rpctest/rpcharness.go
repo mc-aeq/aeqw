@@ -56,7 +56,7 @@ var (
 )
 
 // Harness fully encapsulates an active dcrd process, along with an embedded
-// dcrwallet to provide a unified platform for creating RPC-driven integration
+// aeqw to provide a unified platform for creating RPC-driven integration
 // tests involving dcrd. The active dcrd node will typically be run in simnet
 // mode to allow for easy generation of test blockchains. Additionally, a
 // special method is provided which allows one to easily generate coinbase
@@ -197,7 +197,7 @@ func (h *Harness) SetUp(createTestChain bool, numMatureOutputs uint32) error {
 	}
 	fmt.Println("Node RPC client connected.")
 
-	// Start dcrwallet. This spawns a new process which will be managed
+	// Start aeqw. This spawns a new process which will be managed
 	if err = h.wallet.Start(); err != nil {
 		return err
 	}

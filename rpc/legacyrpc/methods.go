@@ -147,7 +147,7 @@ var handlers = map[string]handler{
 	"importwallet":         {fn: unimplemented, noHelp: true},
 	"listaddressgroupings": {fn: unimplemented, noHelp: true},
 
-	// Reference methods which can't be implemented by dcrwallet due to
+	// Reference methods which can't be implemented by aeqw due to
 	// design decision differences
 	"dumpwallet":    {fn: unsupported, noHelp: true},
 	"encryptwallet": {fn: unsupported, noHelp: true},
@@ -165,11 +165,11 @@ func unimplemented(*Server, interface{}) (interface{}, error) {
 }
 
 // unsupported handles a standard bitcoind RPC request which is
-// unsupported by dcrwallet due to design differences.
+// unsupported by aeqw due to design differences.
 func unsupported(*Server, interface{}) (interface{}, error) {
 	return nil, &dcrjson.RPCError{
 		Code:    -1,
-		Message: "Request unsupported by dcrwallet",
+		Message: "Request unsupported by aeqw",
 	}
 }
 
@@ -3456,7 +3456,7 @@ func version(s *Server, icmd interface{}) (interface{}, error) {
 		resp = make(map[string]dcrjson.VersionResult)
 	}
 
-	resp["dcrwalletjsonrpcapi"] = dcrjson.VersionResult{
+	resp["aeqwjsonrpcapi"] = dcrjson.VersionResult{
 		VersionString: jsonrpcSemverString,
 		Major:         jsonrpcSemverMajor,
 		Minor:         jsonrpcSemverMinor,

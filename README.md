@@ -83,7 +83,7 @@ To build a `aeqw` executable and install it to `$GOPATH/bin/`:
 go install
 ```
 
-To build a `dcrwallet` executable and place it in the current directory:
+To build a `aeqw` executable and place it in the current directory:
 
 ```
 go build
