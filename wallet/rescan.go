@@ -8,9 +8,9 @@ package wallet
 import (
 	"context"
 
-	"github.com/decred/dcrd/chaincfg/chainhash"
-	"github.com/decred/dcrwallet/wallet/udb"
-	"github.com/decred/dcrwallet/walletdb"
+	"github.com/mc-aeq/aeqd/chaincfg/chainhash"
+	"github.com/mc-aeq/aeqw/wallet/udb"
+	"github.com/mc-aeq/aeqw/walletdb"
 )
 
 const maxBlocksPerRescan = 2000

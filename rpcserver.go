@@ -18,10 +18,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/decred/dcrd/certgen"
-	"github.com/decred/dcrwallet/loader"
-	"github.com/decred/dcrwallet/rpc/legacyrpc"
-	"github.com/decred/dcrwallet/rpc/rpcserver"
+	"github.com/mc-aeq/aeqd/certgen"
+	"github.com/mc-aeq/aeqw/loader"
+	"github.com/mc-aeq/aeqw/rpc/legacyrpc"
+	"github.com/mc-aeq/aeqw/rpc/rpcserver"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"

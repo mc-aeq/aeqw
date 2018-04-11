@@ -1,5 +1,6 @@
 // Copyright (c) 2013-2015 The btcsuite developers
 // Copyright (c) 2015-2017 The Decred developers
+// Copyright (c) 2017-2018 The Aequator developers
 // Use of this source code is governed by an ISC
 // license that can be found in the LICENSE file.
 
@@ -17,16 +18,16 @@ import (
 	"runtime/pprof"
 	"time"
 
-	"github.com/decred/dcrd/chaincfg"
-	"github.com/decred/dcrwallet/apperrors"
-	"github.com/decred/dcrwallet/chain"
-	"github.com/decred/dcrwallet/internal/prompt"
-	"github.com/decred/dcrwallet/internal/zero"
-	ldr "github.com/decred/dcrwallet/loader"
-	"github.com/decred/dcrwallet/rpc/legacyrpc"
-	"github.com/decred/dcrwallet/rpc/rpcserver"
-	"github.com/decred/dcrwallet/version"
-	"github.com/decred/dcrwallet/wallet"
+	"github.com/mc-aeq/aeqd/chaincfg"
+	"github.com/mc-aeq/aeqw/apperrors"
+	"github.com/mc-aeq/aeqw/chain"
+	"github.com/mc-aeq/aeqw/internal/prompt"
+	"github.com/mc-aeq/aeqw/internal/zero"
+	ldr "github.com/mc-aeq/aeqw/loader"
+	"github.com/mc-aeq/aeqw/rpc/legacyrpc"
+	"github.com/mc-aeq/aeqw/rpc/rpcserver"
+	"github.com/mc-aeq/aeqw/version"
+	"github.com/mc-aeq/aeqw/wallet"
 )
 
 var (

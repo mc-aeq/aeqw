@@ -9,15 +9,15 @@ package txauthor
 import (
 	"errors"
 
-	"github.com/decred/dcrd/chaincfg"
-	"github.com/decred/dcrd/chaincfg/chainec"
-	"github.com/decred/dcrd/dcrutil"
-	"github.com/decred/dcrd/txscript"
-	"github.com/decred/dcrd/wire"
-	"github.com/decred/dcrwallet/wallet/txrules"
+	"github.com/mc-aeq/aeqd/chaincfg"
+	"github.com/mc-aeq/aeqd/chaincfg/chainec"
+	"github.com/mc-aeq/aeqd/dcrutil"
+	"github.com/mc-aeq/aeqd/txscript"
+	"github.com/mc-aeq/aeqd/wire"
+	"github.com/mc-aeq/aeqw/wallet/txrules"
 
-	h "github.com/decred/dcrwallet/internal/helpers"
-	"github.com/decred/dcrwallet/wallet/internal/txsizes"
+	h "github.com/mc-aeq/aeqw/internal/helpers"
+	"github.com/mc-aeq/aeqw/wallet/internal/txsizes"
 )
 
 const (

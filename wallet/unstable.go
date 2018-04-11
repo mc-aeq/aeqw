@@ -5,10 +5,10 @@
 package wallet
 
 import (
-	"github.com/decred/dcrd/chaincfg/chainhash"
-	"github.com/decred/dcrd/dcrutil"
-	"github.com/decred/dcrwallet/wallet/udb"
-	"github.com/decred/dcrwallet/walletdb"
+	"github.com/mc-aeq/aeqd/chaincfg/chainhash"
+	"github.com/mc-aeq/aeqd/dcrutil"
+	"github.com/mc-aeq/aeqw/wallet/udb"
+	"github.com/mc-aeq/aeqw/walletdb"
 )
 
 type unstableAPI struct {

@@ -8,12 +8,12 @@ package txauthor_test
 import (
 	"testing"
 
-	"github.com/decred/dcrd/dcrutil"
-	"github.com/decred/dcrd/wire"
-	. "github.com/decred/dcrwallet/wallet/txauthor"
-	"github.com/decred/dcrwallet/wallet/txrules"
+	"github.com/mc-aeq/aeqd/dcrutil"
+	"github.com/mc-aeq/aeqd/wire"
+	. "github.com/mc-aeq/aeqw/wallet/txauthor"
+	"github.com/mc-aeq/aeqw/wallet/txrules"
 
-	"github.com/decred/dcrwallet/wallet/internal/txsizes"
+	"github.com/mc-aeq/aeqw/wallet/internal/txsizes"
 )
 
 func p2pkhOutputs(amounts ...dcrutil.Amount) []*wire.TxOut {

@@ -16,11 +16,11 @@ import (
 	"sync"
 	"time"
 
-	"github.com/decred/dcrd/chaincfg"
-	"github.com/decred/dcrd/chaincfg/chainhash"
+	"github.com/mc-aeq/aeqd/chaincfg"
+	"github.com/mc-aeq/aeqd/chaincfg/chainhash"
 
-	"github.com/decred/dcrd/dcrutil"
-	rpc "github.com/decred/dcrd/rpcclient"
+	"github.com/mc-aeq/aeqd/dcrutil"
+	rpc "github.com/mc-aeq/aeqd/rpcclient"
 )
 
 var (

@@ -13,12 +13,12 @@ import (
 	"time"
 
 	"github.com/boltdb/bolt"
-	"github.com/decred/dcrd/chaincfg"
-	"github.com/decred/dcrd/chaincfg/chainhash"
-	"github.com/decred/dcrd/dcrutil"
-	"github.com/decred/dcrd/wire"
-	"github.com/decred/dcrwallet/walletdb"
-	_ "github.com/decred/dcrwallet/walletdb/bdb"
+	"github.com/mc-aeq/aeqd/chaincfg"
+	"github.com/mc-aeq/aeqd/chaincfg/chainhash"
+	"github.com/mc-aeq/aeqd/dcrutil"
+	"github.com/mc-aeq/aeqd/wire"
+	"github.com/mc-aeq/aeqw/walletdb"
+	_ "github.com/mc-aeq/aeqw/walletdb/bdb"
 )
 
 func setup() (db walletdb.DB, s *Store, teardown func(), err error) {

@@ -6,8 +6,8 @@
 package txsizes
 
 import (
-	"github.com/decred/dcrd/wire"
-	h "github.com/decred/dcrwallet/internal/helpers"
+	"github.com/mc-aeq/aeqd/wire"
+	h "github.com/mc-aeq/aeqw/internal/helpers"
 )
 
 // ScriptSizer signature script sizing interface

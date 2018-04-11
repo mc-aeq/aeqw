@@ -21,11 +21,11 @@ import (
 	"time"
 
 	"github.com/btcsuite/websocket"
-	"github.com/decred/dcrd/chaincfg"
-	"github.com/decred/dcrd/dcrjson"
-	"github.com/decred/dcrwallet/chain"
-	"github.com/decred/dcrwallet/loader"
-	"github.com/decred/dcrwallet/ticketbuyer"
+	"github.com/mc-aeq/aeqd/chaincfg"
+	"github.com/mc-aeq/aeqd/dcrjson"
+	"github.com/mc-aeq/aeqw/chain"
+	"github.com/mc-aeq/aeqw/loader"
+	"github.com/mc-aeq/aeqw/ticketbuyer"
 )
 
 type websocketClient struct {

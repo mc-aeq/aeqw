@@ -14,12 +14,12 @@ import (
 	"io"
 	"os"
 
-	"github.com/decred/dcrd/chaincfg"
+	"github.com/mc-aeq/aeqd/chaincfg"
 	"github.com/decred/dcrutil/hdkeychain"
-	"github.com/decred/dcrwallet/wallet/udb"
-	"github.com/decred/dcrwallet/walletdb"
-	_ "github.com/decred/dcrwallet/walletdb/bdb"
-	"github.com/decred/dcrwallet/walletseed"
+	"github.com/mc-aeq/aeqw/wallet/udb"
+	"github.com/mc-aeq/aeqw/walletdb"
+	_ "github.com/mc-aeq/aeqw/walletdb/bdb"
+	"github.com/mc-aeq/aeqw/walletseed"
 )
 
 const dbname = "v1.db"

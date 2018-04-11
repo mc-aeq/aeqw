@@ -10,13 +10,13 @@ import (
 	"path/filepath"
 	"sync"
 
-	"github.com/decred/dcrd/chaincfg"
-	"github.com/decred/dcrd/dcrutil"
-	dcrrpcclient "github.com/decred/dcrd/rpcclient"
-	"github.com/decred/dcrwallet/ticketbuyer"
-	"github.com/decred/dcrwallet/wallet"
-	"github.com/decred/dcrwallet/walletdb"
-	_ "github.com/decred/dcrwallet/walletdb/bdb" // driver loaded during init
+	"github.com/mc-aeq/aeqd/chaincfg"
+	"github.com/mc-aeq/aeqd/dcrutil"
+	dcrrpcclient "github.com/mc-aeq/aeqd/rpcclient"
+	"github.com/mc-aeq/aeqw/ticketbuyer"
+	"github.com/mc-aeq/aeqw/wallet"
+	"github.com/mc-aeq/aeqw/walletdb"
+	_ "github.com/mc-aeq/aeqw/walletdb/bdb" // driver loaded during init
 )
 
 const (

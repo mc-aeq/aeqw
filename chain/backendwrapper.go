@@ -8,12 +8,12 @@ import (
 	"context"
 	"encoding/hex"
 
-	"github.com/decred/dcrd/chaincfg/chainhash"
-	"github.com/decred/dcrd/dcrutil"
-	"github.com/decred/dcrd/rpcclient"
-	"github.com/decred/dcrd/wire"
-	"github.com/decred/dcrwallet/apperrors"
-	"github.com/decred/dcrwallet/wallet"
+	"github.com/mc-aeq/aeqd/chaincfg/chainhash"
+	"github.com/mc-aeq/aeqd/dcrutil"
+	"github.com/mc-aeq/aeqd/rpcclient"
+	"github.com/mc-aeq/aeqd/wire"
+	"github.com/mc-aeq/aeqw/apperrors"
+	"github.com/mc-aeq/aeqw/wallet"
 	"github.com/jrick/bitset"
 )
 
@@ -40,7 +40,7 @@ func RPCClientFromBackend(n wallet.NetworkBackend) (*rpcclient.Client, error) {
 	return b.rpcClient, nil
 }
 
-func (b *rpcBackend) GetHeaders(ctx context.Context, blockLocators []chainhash.Hash, hashStop *chainhash.Hash) ([][]byte, error) {
+func (b *rpcBackend) GetHeaders(ctx context.Context, blockLocators []*chainhash.Hash, hashStop *chainhash.Hash) ([][]byte, error) {
 	r, err := b.rpcClient.GetHeaders(blockLocators, hashStop)
 	if err != nil {
 		return nil, err

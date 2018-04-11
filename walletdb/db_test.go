@@ -10,8 +10,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/decred/dcrwallet/walletdb"
-	_ "github.com/decred/dcrwallet/walletdb/bdb"
+	"github.com/mc-aeq/aeqw/walletdb"
+	_ "github.com/mc-aeq/aeqw/walletdb/bdb"
 )
 
 // TestAddDuplicateDriver ensures that adding a duplicate driver does not

@@ -18,23 +18,23 @@ import (
 	"sync"
 	"time"
 
-	"github.com/decred/dcrd/blockchain"
-	"github.com/decred/dcrd/blockchain/stake"
-	"github.com/decred/dcrd/chaincfg"
-	"github.com/decred/dcrd/chaincfg/chainec"
-	"github.com/decred/dcrd/chaincfg/chainhash"
-	"github.com/decred/dcrd/dcrec/secp256k1"
-	"github.com/decred/dcrd/dcrjson"
-	"github.com/decred/dcrd/dcrutil"
-	"github.com/decred/dcrd/hdkeychain"
-	dcrrpcclient "github.com/decred/dcrd/rpcclient"
-	"github.com/decred/dcrd/txscript"
-	"github.com/decred/dcrd/wire"
-	"github.com/decred/dcrwallet/apperrors"
-	"github.com/decred/dcrwallet/wallet/txauthor"
-	"github.com/decred/dcrwallet/wallet/txrules"
-	"github.com/decred/dcrwallet/wallet/udb"
-	"github.com/decred/dcrwallet/walletdb"
+	"github.com/mc-aeq/aeqd/blockchain"
+	"github.com/mc-aeq/aeqd/blockchain/stake"
+	"github.com/mc-aeq/aeqd/chaincfg"
+	"github.com/mc-aeq/aeqd/chaincfg/chainec"
+	"github.com/mc-aeq/aeqd/chaincfg/chainhash"
+	"github.com/mc-aeq/aeqd/dcrec/secp256k1"
+	"github.com/mc-aeq/aeqd/dcrjson"
+	"github.com/mc-aeq/aeqd/dcrutil"
+	"github.com/mc-aeq/aeqd/hdkeychain"
+	dcrrpcclient "github.com/mc-aeq/aeqd/rpcclient"
+	"github.com/mc-aeq/aeqd/txscript"
+	"github.com/mc-aeq/aeqd/wire"
+	"github.com/mc-aeq/aeqw/apperrors"
+	"github.com/mc-aeq/aeqw/wallet/txauthor"
+	"github.com/mc-aeq/aeqw/wallet/txrules"
+	"github.com/mc-aeq/aeqw/wallet/udb"
+	"github.com/mc-aeq/aeqw/walletdb"
 	"github.com/jrick/bitset"
 	"golang.org/x/sync/errgroup"
 )
@@ -779,7 +779,7 @@ func (w *Wallet) FetchHeaders(n NetworkBackend) (count int, rescanFrom chainhash
 	// reverse order, stopping at the first block that is found and that exists
 	// on the actual main chain.
 	//
-	// See https://github.com/decred/dcrd/issues/427 for details.  This hack
+	// See https://github.com/mc-aeq/aeqd/issues/427 for details.  This hack
 	// should be dumped once fixed.
 	var (
 		commonAncestor       chainhash.Hash

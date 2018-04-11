@@ -11,11 +11,11 @@ import (
 	"sync"
 	"time"
 
-	"github.com/decred/dcrd/blockchain"
-	"github.com/decred/dcrd/chaincfg"
-	"github.com/decred/dcrd/dcrutil"
-	dcrrpcclient "github.com/decred/dcrd/rpcclient"
-	"github.com/decred/dcrwallet/wallet"
+	"github.com/mc-aeq/aeqd/blockchain"
+	"github.com/mc-aeq/aeqd/chaincfg"
+	"github.com/mc-aeq/aeqd/dcrutil"
+	dcrrpcclient "github.com/mc-aeq/aeqd/rpcclient"
+	"github.com/mc-aeq/aeqw/wallet"
 )
 
 var (

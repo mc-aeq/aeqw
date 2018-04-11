@@ -9,11 +9,11 @@
 // Full documentation of the API implemented by this package is maintained in a
 // language-agnostic document:
 //
-//   https://github.com/decred/dcrwallet/blob/master/rpc/documentation/api.md
+//   https://github.com/mc-aeq/aeqw/blob/master/rpc/documentation/api.md
 //
 // Any API changes must be performed according to the steps listed here:
 //
-//   https://github.com/decred/dcrwallet/blob/master/rpc/documentation/serverchanges.md
+//   https://github.com/mc-aeq/aeqw/blob/master/rpc/documentation/serverchanges.md
 package rpcserver
 
 import (
@@ -30,31 +30,31 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	"github.com/decred/dcrd/blockchain/stake"
-	"github.com/decred/dcrd/chaincfg"
-	"github.com/decred/dcrd/chaincfg/chainec"
-	"github.com/decred/dcrd/chaincfg/chainhash"
-	"github.com/decred/dcrd/dcrutil"
-	"github.com/decred/dcrd/hdkeychain"
-	dcrrpcclient "github.com/decred/dcrd/rpcclient"
-	"github.com/decred/dcrd/txscript"
-	"github.com/decred/dcrd/wire"
-	"github.com/decred/dcrwallet/apperrors"
-	"github.com/decred/dcrwallet/chain"
-	"github.com/decred/dcrwallet/internal/cfgutil"
-	h "github.com/decred/dcrwallet/internal/helpers"
-	"github.com/decred/dcrwallet/internal/zero"
-	"github.com/decred/dcrwallet/loader"
-	"github.com/decred/dcrwallet/netparams"
-	"github.com/decred/dcrwallet/rpc/legacyrpc"
-	pb "github.com/decred/dcrwallet/rpc/walletrpc"
-	"github.com/decred/dcrwallet/ticketbuyer"
-	"github.com/decred/dcrwallet/wallet"
-	"github.com/decred/dcrwallet/wallet/txauthor"
-	"github.com/decred/dcrwallet/wallet/txrules"
-	"github.com/decred/dcrwallet/wallet/udb"
-	"github.com/decred/dcrwallet/walletdb"
-	"github.com/decred/dcrwallet/walletseed"
+	"github.com/mc-aeq/aeqd/blockchain/stake"
+	"github.com/mc-aeq/aeqd/chaincfg"
+	"github.com/mc-aeq/aeqd/chaincfg/chainec"
+	"github.com/mc-aeq/aeqd/chaincfg/chainhash"
+	"github.com/mc-aeq/aeqd/dcrutil"
+	"github.com/mc-aeq/aeqd/hdkeychain"
+	dcrrpcclient "github.com/mc-aeq/aeqd/rpcclient"
+	"github.com/mc-aeq/aeqd/txscript"
+	"github.com/mc-aeq/aeqd/wire"
+	"github.com/mc-aeq/aeqw/apperrors"
+	"github.com/mc-aeq/aeqw/chain"
+	"github.com/mc-aeq/aeqw/internal/cfgutil"
+	h "github.com/mc-aeq/aeqw/internal/helpers"
+	"github.com/mc-aeq/aeqw/internal/zero"
+	"github.com/mc-aeq/aeqw/loader"
+	"github.com/mc-aeq/aeqw/netparams"
+	"github.com/mc-aeq/aeqw/rpc/legacyrpc"
+	pb "github.com/mc-aeq/aeqw/rpc/walletrpc"
+	"github.com/mc-aeq/aeqw/ticketbuyer"
+	"github.com/mc-aeq/aeqw/wallet"
+	"github.com/mc-aeq/aeqw/wallet/txauthor"
+	"github.com/mc-aeq/aeqw/wallet/txrules"
+	"github.com/mc-aeq/aeqw/wallet/udb"
+	"github.com/mc-aeq/aeqw/walletdb"
+	"github.com/mc-aeq/aeqw/walletseed"
 )
 
 // Public API version constants

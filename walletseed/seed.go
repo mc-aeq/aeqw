@@ -11,8 +11,8 @@ import (
 	"errors"
 	"strings"
 
-	"github.com/decred/dcrd/hdkeychain"
-	"github.com/decred/dcrwallet/pgpwordlist"
+	"github.com/mc-aeq/aeqd/hdkeychain"
+	"github.com/mc-aeq/aeqw/pgpwordlist"
 )
 
 // GenerateRandomSeed returns a new seed created from a cryptographically-secure

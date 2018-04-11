@@ -10,11 +10,11 @@ import (
 	//"strings"
 	//"time"
 
-	"github.com/decred/dcrd/chaincfg"
-	//dcrrpcclient "github.com/decred/dcrd/rpcclient"
-	//"github.com/decred/dcrd/dcrutil"
-	//"github.com/decred/dcrwallet/rpc/legacyrpc"
-	"github.com/decred/dcrwallet/rpctest"
+	"github.com/mc-aeq/aeqd/chaincfg"
+	//dcrrpcclient "github.com/mc-aeq/aeqd/rpcclient"
+	//"github.com/mc-aeq/aeqd/dcrutil"
+	//"github.com/mc-aeq/aeqw/rpc/legacyrpc"
+	"github.com/mc-aeq/aeqw/rpctest"
 )
 
 func main() {

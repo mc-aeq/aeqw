@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/decred/dcrd/dcrutil"
+	"github.com/mc-aeq/aeqd/dcrutil"
 )
 
 const (

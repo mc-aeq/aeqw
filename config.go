@@ -17,22 +17,22 @@ import (
 	"strings"
 
 	"github.com/btcsuite/btclog"
-	"github.com/decred/dcrd/dcrutil"
-	"github.com/decred/dcrwallet/internal/cfgutil"
-	"github.com/decred/dcrwallet/netparams"
-	"github.com/decred/dcrwallet/ticketbuyer"
-	"github.com/decred/dcrwallet/version"
-	"github.com/decred/dcrwallet/wallet"
-	"github.com/decred/dcrwallet/wallet/txrules"
 	flags "github.com/jessevdk/go-flags"
+	"github.com/mc-aeq/aeqd/dcrutil"
+	"github.com/mc-aeq/aeqw/internal/cfgutil"
+	"github.com/mc-aeq/aeqw/netparams"
+	"github.com/mc-aeq/aeqw/ticketbuyer"
+	"github.com/mc-aeq/aeqw/version"
+	"github.com/mc-aeq/aeqw/wallet"
+	"github.com/mc-aeq/aeqw/wallet/txrules"
 )
 
 const (
-	defaultCAFilename          = "dcrd.cert"
-	defaultConfigFilename      = "dcrwallet.conf"
+	defaultCAFilename          = "aeqw.cert"
+	defaultConfigFilename      = "aeqw.conf"
 	defaultLogLevel            = "info"
 	defaultLogDirname          = "logs"
-	defaultLogFilename         = "dcrwallet.log"
+	defaultLogFilename         = "aeqw.log"
 	defaultRPCMaxClients       = 10
 	defaultRPCMaxWebsockets    = 25
 	defaultEnableTicketBuyer   = false
@@ -71,8 +71,8 @@ const (
 )
 
 var (
-	dcrdDefaultCAFile  = filepath.Join(dcrutil.AppDataDir("dcrd", false), "rpc.cert")
-	defaultAppDataDir  = dcrutil.AppDataDir("dcrwallet", false)
+	dcrdDefaultCAFile  = filepath.Join(dcrutil.AppDataDir("aeqd", false), "rpc.cert")
+	defaultAppDataDir  = dcrutil.AppDataDir("aeqw", false)
 	defaultConfigFile  = filepath.Join(defaultAppDataDir, defaultConfigFilename)
 	defaultRPCKeyFile  = filepath.Join(defaultAppDataDir, "rpc.key")
 	defaultRPCCertFile = filepath.Join(defaultAppDataDir, "rpc.cert")

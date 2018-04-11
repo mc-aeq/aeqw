@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/decred/dcrd/dcrutil"
+	"github.com/mc-aeq/aeqd/dcrutil"
 )
 
 var (

@@ -12,9 +12,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/decred/dcrd/chaincfg"
-	"github.com/decred/dcrd/chaincfg/chainhash"
-	dcrrpcclient "github.com/decred/dcrd/rpcclient"
+	"github.com/mc-aeq/aeqd/chaincfg"
+	"github.com/mc-aeq/aeqd/chaincfg/chainhash"
+	dcrrpcclient "github.com/mc-aeq/aeqd/rpcclient"
 )
 
 var requiredChainServerAPI = semver{major: 3, minor: 1, patch: 0}

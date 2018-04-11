@@ -52,12 +52,12 @@ import (
 	"fmt"
 	"path/filepath"
 
-	pb "github.com/decred/dcrwallet/rpc/walletrpc"
+	pb "github.com/mc-aeq/aeqw/rpc/walletrpc"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
 
-	"github.com/decred/dcrd/dcrutil"
+	"github.com/mc-aeq/aeqd/dcrutil"
 )
 
 var certificateFile = filepath.Join(dcrutil.AppDataDir("dcrwallet", false), "rpc.cert")

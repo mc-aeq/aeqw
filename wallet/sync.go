@@ -9,10 +9,10 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/decred/dcrd/hdkeychain"
-	"github.com/decred/dcrwallet/apperrors"
-	"github.com/decred/dcrwallet/wallet/udb"
-	"github.com/decred/dcrwallet/walletdb"
+	"github.com/mc-aeq/aeqd/hdkeychain"
+	"github.com/mc-aeq/aeqw/apperrors"
+	"github.com/mc-aeq/aeqw/wallet/udb"
+	"github.com/mc-aeq/aeqw/walletdb"
 	"golang.org/x/sync/errgroup"
 )
 

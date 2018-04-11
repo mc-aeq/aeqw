@@ -5,9 +5,9 @@
 package udb
 
 import (
-	"github.com/decred/dcrd/chaincfg"
-	"github.com/decred/dcrwallet/apperrors"
-	"github.com/decred/dcrwallet/walletdb"
+	"github.com/mc-aeq/aeqd/chaincfg"
+	"github.com/mc-aeq/aeqw/apperrors"
+	"github.com/mc-aeq/aeqw/walletdb"
 )
 
 // Old package namespace bucket keys.  These are still used as of the very first

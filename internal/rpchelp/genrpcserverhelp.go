@@ -13,8 +13,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/decred/dcrd/dcrjson"
-	"github.com/decred/dcrwallet/internal/rpchelp"
+	"github.com/mc-aeq/aeqd/dcrjson"
+	"github.com/mc-aeq/aeqw/internal/rpchelp"
 )
 
 var outputFile = func() *os.File {

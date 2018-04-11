@@ -14,15 +14,15 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/decred/dcrd/chaincfg"
-	"github.com/decred/dcrd/hdkeychain"
-	"github.com/decred/dcrd/wire"
-	"github.com/decred/dcrwallet/internal/prompt"
-	"github.com/decred/dcrwallet/loader"
-	"github.com/decred/dcrwallet/wallet"
-	"github.com/decred/dcrwallet/walletdb"
-	_ "github.com/decred/dcrwallet/walletdb/bdb"
-	"github.com/decred/dcrwallet/walletseed"
+	"github.com/mc-aeq/aeqd/chaincfg"
+	"github.com/mc-aeq/aeqd/hdkeychain"
+	"github.com/mc-aeq/aeqd/wire"
+	"github.com/mc-aeq/aeqw/internal/prompt"
+	"github.com/mc-aeq/aeqw/loader"
+	"github.com/mc-aeq/aeqw/wallet"
+	"github.com/mc-aeq/aeqw/walletdb"
+	_ "github.com/mc-aeq/aeqw/walletdb/bdb"
+	"github.com/mc-aeq/aeqw/walletseed"
 )
 
 // networkDir returns the directory name of a network directory to hold wallet

@@ -8,8 +8,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/decred/dcrwallet/apperrors"
-	"github.com/decred/dcrwallet/wallet"
+	"github.com/mc-aeq/aeqw/apperrors"
+	"github.com/mc-aeq/aeqw/wallet"
 	"golang.org/x/sync/errgroup"
 )
 

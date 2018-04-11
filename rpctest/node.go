@@ -16,9 +16,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/decred/dcrd/certgen"
-	rpc "github.com/decred/dcrd/rpcclient"
-	"github.com/decred/dcrd/wire"
+	"github.com/mc-aeq/aeqd/certgen"
+	rpc "github.com/mc-aeq/aeqd/rpcclient"
+	"github.com/mc-aeq/aeqd/wire"
 )
 
 // nodeConfig contains all the args, and data required to launch a dcrd process

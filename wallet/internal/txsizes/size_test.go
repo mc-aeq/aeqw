@@ -3,8 +3,8 @@ package txsizes_test
 import (
 	"testing"
 
-	"github.com/decred/dcrd/wire"
-	. "github.com/decred/dcrwallet/wallet/internal/txsizes"
+	"github.com/mc-aeq/aeqd/wire"
+	. "github.com/mc-aeq/aeqw/wallet/internal/txsizes"
 )
 
 const (

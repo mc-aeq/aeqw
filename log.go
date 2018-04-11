@@ -11,14 +11,14 @@ import (
 	"path/filepath"
 
 	"github.com/btcsuite/btclog"
-	dcrrpcclient "github.com/decred/dcrd/rpcclient"
-	"github.com/decred/dcrwallet/chain"
-	"github.com/decred/dcrwallet/loader"
-	"github.com/decred/dcrwallet/rpc/legacyrpc"
-	"github.com/decred/dcrwallet/rpc/rpcserver"
-	"github.com/decred/dcrwallet/ticketbuyer"
-	"github.com/decred/dcrwallet/wallet"
-	"github.com/decred/dcrwallet/wallet/udb"
+	dcrrpcclient "github.com/mc-aeq/aeqd/rpcclient"
+	"github.com/mc-aeq/aeqw/chain"
+	"github.com/mc-aeq/aeqw/loader"
+	"github.com/mc-aeq/aeqw/rpc/legacyrpc"
+	"github.com/mc-aeq/aeqw/rpc/rpcserver"
+	"github.com/mc-aeq/aeqw/ticketbuyer"
+	"github.com/mc-aeq/aeqw/wallet"
+	"github.com/mc-aeq/aeqw/wallet/udb"
 	"github.com/jrick/logrotate/rotator"
 )
 
