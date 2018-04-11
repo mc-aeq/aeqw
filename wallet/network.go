@@ -7,11 +7,11 @@ package wallet
 import (
 	"context"
 
+	"github.com/jrick/bitset"
 	"github.com/mc-aeq/aeqd/chaincfg/chainhash"
 	"github.com/mc-aeq/aeqd/dcrutil"
 	"github.com/mc-aeq/aeqd/wire"
 	"github.com/mc-aeq/aeqw/apperrors"
-	"github.com/jrick/bitset"
 )
 
 // NetworkBackend provides wallets with Decred network functionality.  Some
@@ -19,7 +19,7 @@ import (
 // to complete.
 type NetworkBackend interface {
 	// Should be no issue for spv
-	GetHeaders(ctx context.Context, blockLocators []chainhash.Hash, hashStop *chainhash.Hash) ([][]byte, error)
+	GetHeaders(ctx context.Context, blockLocators []*chainhash.Hash, hashStop *chainhash.Hash) ([][]byte, error)
 	LoadTxFilter(ctx context.Context, reload bool, addrs []dcrutil.Address, outpoints []wire.OutPoint) error
 	PublishTransaction(ctx context.Context, tx *wire.MsgTx) error
 

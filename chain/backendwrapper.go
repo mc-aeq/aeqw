@@ -8,13 +8,13 @@ import (
 	"context"
 	"encoding/hex"
 
+	"github.com/jrick/bitset"
 	"github.com/mc-aeq/aeqd/chaincfg/chainhash"
 	"github.com/mc-aeq/aeqd/dcrutil"
 	"github.com/mc-aeq/aeqd/rpcclient"
 	"github.com/mc-aeq/aeqd/wire"
 	"github.com/mc-aeq/aeqw/apperrors"
 	"github.com/mc-aeq/aeqw/wallet"
-	"github.com/jrick/bitset"
 )
 
 type rpcBackend struct {
