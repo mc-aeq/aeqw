@@ -71,7 +71,7 @@ const (
 )
 
 var (
-	dcrdDefaultCAFile  = filepath.Join(dcrutil.AppDataDir("aeqd", false), "rpc.cert")
+	aeqdDefaultCAFile  = filepath.Join(dcrutil.AppDataDir("aeqd", false), "rpc.cert")
 	defaultAppDataDir  = dcrutil.AppDataDir("aeqw", false)
 	defaultConfigFile  = filepath.Join(defaultAppDataDir, defaultConfigFilename)
 	defaultRPCKeyFile  = filepath.Join(defaultAppDataDir, "rpc.key")
@@ -116,11 +116,11 @@ type config struct {
 	TicketFee           *cfgutil.AmountFlag  `long:"ticketfee" description:"Sets the wallet's ticket fee per kb"`
 
 	// RPC client options
-	RPCConnect       string                  `short:"c" long:"rpcconnect" description:"Hostname/IP and port of dcrd RPC server to connect to"`
-	CAFile           *cfgutil.ExplicitString `long:"cafile" description:"File containing root certificates to authenticate a TLS connections with dcrd"`
+	RPCConnect       string                  `short:"c" long:"rpcconnect" description:"Hostname/IP and port of aeqd RPC server to connect to"`
+	CAFile           *cfgutil.ExplicitString `long:"cafile" description:"File containing root certificates to authenticate a TLS connections with aeqd"`
 	DisableClientTLS bool                    `long:"noclienttls" description:"Disable TLS for the RPC client -- NOTE: This is only allowed if the RPC client is connecting to localhost"`
-	DcrdUsername     string                  `long:"dcrdusername" description:"Username for dcrd authentication"`
-	DcrdPassword     string                  `long:"dcrdpassword" default-mask:"-" description:"Password for dcrd authentication"`
+	AeqdUsername     string                  `long:"aeqdusername" description:"Username for aeqd authentication"`
+	AeqdPassword     string                  `long:"aeqdpassword" default-mask:"-" description:"Password for aeqd authentication"`
 	Proxy            string                  `long:"proxy" description:"Connect via SOCKS5 proxy (eg. 127.0.0.1:9050)"`
 	ProxyUser        string                  `long:"proxyuser" description:"Username for proxy server"`
 	ProxyPass        string                  `long:"proxypass" default-mask:"-" description:"Password for proxy server"`
@@ -144,8 +144,8 @@ type config struct {
 	NoLegacyRPC            bool                    `long:"nolegacyrpc" description:"Disable the legacy JSON-RPC server"`
 	LegacyRPCMaxClients    int64                   `long:"rpcmaxclients" description:"Max number of legacy JSON-RPC clients for standard connections"`
 	LegacyRPCMaxWebsockets int64                   `long:"rpcmaxwebsockets" description:"Max number of legacy JSON-RPC websocket connections"`
-	Username               string                  `short:"u" long:"username" description:"Username for legacy JSON-RPC and dcrd authentication (if dcrdusername is unset)"`
-	Password               string                  `short:"P" long:"password" default-mask:"-" description:"Password for legacy JSON-RPC and dcrd authentication (if dcrdpassword is unset)"`
+	Username               string                  `short:"u" long:"username" description:"Username for legacy JSON-RPC and aeqd authentication (if aeqdusername is unset)"`
+	Password               string                  `short:"P" long:"password" default-mask:"-" description:"Password for legacy JSON-RPC and aeqd authentication (if aeqdpassword is unset)"`
 
 	// IPC options
 	PipeTx            *uint `long:"pipetx" description:"File descriptor or handle of write end pipe to enable child -> parent process communication"`
@@ -770,14 +770,14 @@ func loadConfig(ctx context.Context) (*config, []string, error) {
 			}
 			if !certExists {
 				if _, ok := localhostListeners[RPCHost]; ok {
-					dcrdCertExists, err := cfgutil.FileExists(
-						dcrdDefaultCAFile)
+					aeqdCertExists, err := cfgutil.FileExists(
+						aeqdDefaultCAFile)
 					if err != nil {
 						fmt.Fprintln(os.Stderr, err)
 						return loadConfigError(err)
 					}
-					if dcrdCertExists {
-						cfg.CAFile.Value = dcrdDefaultCAFile
+					if aeqdCertExists {
+						cfg.CAFile.Value = aeqdDefaultCAFile
 					}
 				}
 			}
@@ -881,11 +881,11 @@ func loadConfig(ctx context.Context) (*config, []string, error) {
 	// the client.  The two settings were previously shared for dcrd and
 	// client auth, so this avoids breaking backwards compatibility while
 	// allowing users to use different auth settings for dcrd and wallet.
-	if cfg.DcrdUsername == "" {
-		cfg.DcrdUsername = cfg.Username
+	if cfg.AeqdUsername == "" {
+		cfg.AeqdUsername = cfg.Username
 	}
-	if cfg.DcrdPassword == "" {
-		cfg.DcrdPassword = cfg.Password
+	if cfg.AeqdPassword == "" {
+		cfg.AeqdPassword = cfg.Password
 	}
 
 	// Warn if user still has an old ticket buyer configuration file.

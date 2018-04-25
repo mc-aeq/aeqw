@@ -52,7 +52,7 @@ func newConfig(appDataDir, certFile, keyFile string, extra []string) (*nodeConfi
 		extra:      extra,
 		appDataDir: appDataDir,
 
-		exe:      "dcrd",
+		exe:      "aeqd",
 		endpoint: "ws",
 		certFile: certFile,
 		keyFile:  keyFile,
