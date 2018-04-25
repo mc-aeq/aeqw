@@ -54,7 +54,7 @@ For a first time installation, the project and dependency sources can be obtaine
 
 ```
 git clone https://github.com/mc-aeq/aeqw $GOPATH/src/github.com/mc-aeq/aeqw
-cd $GOPATH/src/github.com/mc-aeq/aewq
+cd $GOPATH/src/github.com/mc-aeq/aeqw
 dep ensure
 ```
 
