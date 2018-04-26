@@ -59,9 +59,9 @@ import (
 
 // Public API version constants
 const (
-	semverString = "4.35.0"
+	semverString = "4.37.0"
 	semverMajor  = 4
-	semverMinor  = 35
+	semverMinor  = 37
 	semverPatch  = 0
 )
 
@@ -1140,8 +1140,6 @@ func (s *walletServer) ChangePassphrase(ctx context.Context, req *pb.ChangePassp
 	return &pb.ChangePassphraseResponse{}, nil
 }
 
-// BUGS:
-// - InputIndexes request field is ignored.
 func (s *walletServer) SignTransaction(ctx context.Context, req *pb.SignTransactionRequest) (
 	*pb.SignTransactionResponse, error) {
 
@@ -1166,10 +1164,16 @@ func (s *walletServer) SignTransaction(ctx context.Context, req *pb.SignTransact
 	var additionalPkScripts map[wire.OutPoint][]byte
 	if len(req.AdditionalScripts) > 0 {
 		additionalPkScripts = make(map[wire.OutPoint][]byte, len(req.AdditionalScripts))
-		for _, s := range req.AdditionalScripts {
-			op := wire.OutPoint{Index: s.OutputIndex, Tree: int8(s.Tree)}
-			copy(op.Hash[:], s.TransactionHash)
-			additionalPkScripts[op] = s.PkScript
+		for _, script := range req.AdditionalScripts {
+			op := wire.OutPoint{Index: script.OutputIndex, Tree: int8(script.Tree)}
+			if len(script.TransactionHash) != chainhash.HashSize {
+				return nil, status.Errorf(codes.InvalidArgument,
+					"Invalid transaction hash length for script %v, expected %v got %v",
+					script, chainhash.HashSize, len(script.TransactionHash))
+			}
+
+			copy(op.Hash[:], script.TransactionHash)
+			additionalPkScripts[op] = script.PkScript
 		}
 	}
 
@@ -1195,6 +1199,70 @@ func (s *walletServer) SignTransaction(ctx context.Context, req *pb.SignTransact
 		UnsignedInputIndexes: invalidInputIndexes,
 	}
 	return resp, nil
+}
+
+func (s *walletServer) SignTransactions(ctx context.Context, req *pb.SignTransactionsRequest) (
+	*pb.SignTransactionsResponse, error) {
+	defer zero.Bytes(req.Passphrase)
+
+	lock := make(chan time.Time, 1)
+	defer func() {
+		lock <- time.Time{} // send matters, not the value
+	}()
+	err := s.wallet.Unlock(req.Passphrase, lock)
+	if err != nil {
+		return nil, translateError(err)
+	}
+
+	var additionalPkScripts map[wire.OutPoint][]byte
+	if len(req.AdditionalScripts) > 0 {
+		additionalPkScripts = make(map[wire.OutPoint][]byte, len(req.AdditionalScripts))
+		for _, script := range req.AdditionalScripts {
+			op := wire.OutPoint{Index: script.OutputIndex, Tree: int8(script.Tree)}
+			if len(script.TransactionHash) != chainhash.HashSize {
+				return nil, status.Errorf(codes.InvalidArgument,
+					"Invalid transaction hash length for script %v, expected %v got %v",
+					script, chainhash.HashSize, len(script.TransactionHash))
+			}
+
+			copy(op.Hash[:], script.TransactionHash)
+			additionalPkScripts[op] = script.PkScript
+		}
+	}
+
+	resp := pb.SignTransactionsResponse{}
+	for _, unsignedTx := range req.Transactions {
+		var tx wire.MsgTx
+		err := tx.Deserialize(bytes.NewReader(unsignedTx.SerializedTransaction))
+		if err != nil {
+			return nil, status.Errorf(codes.InvalidArgument,
+				"Bytes do not represent a valid raw transaction: %v", err)
+		}
+
+		invalidSigs, err := s.wallet.SignTransaction(&tx, txscript.SigHashAll, additionalPkScripts, nil, nil)
+		if err != nil {
+			return nil, translateError(err)
+		}
+
+		invalidInputIndexes := make([]uint32, len(invalidSigs))
+		for i, e := range invalidSigs {
+			invalidInputIndexes[i] = e.InputIndex
+		}
+
+		var serializedTransaction bytes.Buffer
+		serializedTransaction.Grow(tx.SerializeSize())
+		err = tx.Serialize(&serializedTransaction)
+		if err != nil {
+			return nil, translateError(err)
+		}
+
+		resp.Transactions = append(resp.Transactions, &pb.SignTransactionsResponse_SignedTransaction{
+			Transaction:          serializedTransaction.Bytes(),
+			UnsignedInputIndexes: invalidInputIndexes,
+		})
+	}
+
+	return &resp, nil
 }
 
 func (s *walletServer) CreateSignature(ctx context.Context, req *pb.CreateSignatureRequest) (
@@ -2025,6 +2093,23 @@ func (s *loaderServer) CreateWallet(ctx context.Context, req *pb.CreateWalletReq
 	return &pb.CreateWalletResponse{}, nil
 }
 
+func (s *loaderServer) CreateWatchingOnlyWallet(ctx context.Context, req *pb.CreateWatchingOnlyWalletRequest) (
+	*pb.CreateWatchingOnlyWalletResponse, error) {
+
+	// Use an insecure public passphrase when the request's is empty.
+	pubPassphrase := req.PublicPassphrase
+	if len(pubPassphrase) == 0 {
+		pubPassphrase = []byte(wallet.InsecurePubPassphrase)
+	}
+
+	_, err := s.loader.CreateWatchingOnlyWallet(req.ExtendedPubKey, pubPassphrase)
+	if err != nil {
+		return nil, translateError(err)
+	}
+
+	return &pb.CreateWatchingOnlyWalletResponse{}, nil
+}
+
 func (s *loaderServer) OpenWallet(ctx context.Context, req *pb.OpenWalletRequest) (
 	*pb.OpenWalletResponse, error) {
 
@@ -2034,12 +2119,14 @@ func (s *loaderServer) OpenWallet(ctx context.Context, req *pb.OpenWalletRequest
 		pubPassphrase = []byte(wallet.InsecurePubPassphrase)
 	}
 
-	_, err := s.loader.OpenExistingWallet(pubPassphrase)
+	w, err := s.loader.OpenExistingWallet(pubPassphrase)
 	if err != nil {
 		return nil, translateError(err)
 	}
 
-	return &pb.OpenWalletResponse{}, nil
+	return &pb.OpenWalletResponse{
+		WatchingOnly: w.Manager.WatchingOnly(),
+	}, nil
 }
 
 func (s *loaderServer) WalletExists(ctx context.Context, req *pb.WalletExistsRequest) (

@@ -1,6 +1,6 @@
 # RPC API Specification
 
-Version: 4.35.x
+Version: 4.38.x
 
 **Note:** This document assumes the reader is familiar with gRPC concepts.
 Refer to the [gRPC Concepts documentation](http://www.grpc.io/docs/guides/concepts.html)
@@ -91,6 +91,7 @@ no dependencies and is always running.
 
 - [`WalletExists`](#walletexists)
 - [`CreateWallet`](#createwallet)
+- [`CreateWatchingOnlyWallet`](#createwatchingonlywallet)
 - [`OpenWallet`](#openwallet)
 - [`CloseWallet`](#closewallet)
 - [`StartConsensusRpc`](#startconsensusrpc)
@@ -166,6 +167,30 @@ synchronizes the wallet to the consensus server if it was previously loaded.
 **Stability:** Unstable: There needs to be a way to recover all keys and
   transactions of a wallet being recovered by its seed.  It is unclear whether
   it should be part of this method or a `WalletService` method.
+
+___
+
+#### `CreateWatchingOnlyWallet`
+
+The `CreateWatchingOnlyWallet` method is used to create a watching only wallet.
+After creating a wallet, the `WalletService` service begins running.
+
+**Request:** `CreateWatchingOnlyWalletRequest`
+
+- `string extended_public_key`: The extended public key of the wallet.
+
+- `bytes public_passphrase`: The passphrase used for the outer wallet
+  encryption.  This passphrase protects data that is made public on the
+  blockchain.  If this passphrase has zero length, an insecure default is used
+  instead.
+
+**Response:** `CreateWatchingOnlyWalletReponse`
+
+**Expected errors:**
+
+- `FailedPrecondition`: The wallet is currently open.
+
+- `AlreadyExists`: A file already exists at the wallet database file path.
 
 ___
 
@@ -380,6 +405,7 @@ The service provides the following methods:
 - [`UnspentOutputs`](#unspentoutputs)
 - [`ConstructTransaction`](#constructtransaction)
 - [`SignTransaction`](#signtransaction)
+- [`SignTransactions`](#signtransactions)
 - [`CreateSignature`](#createsignature)
 - [`PublishTransaction`](#publishtransaction)
 - [`PublishUnminedTransactions`](#publishunminedtransactions)
@@ -1341,10 +1367,6 @@ transaction using a wallet private keys.
 
 - `bytes serialized_transaction`: The transaction to add input signatures to.
 
-- `repeated uint32 input_indexes`: The input indexes that signature scripts must
-  be created for.  If there are no indexes, input scripts are created for every
-  input that is missing an input script.
-
 - `repeated AdditionalScript additional_scripts`: Additional output scripts of
   previous outputs spent by the transaction that the wallet may not be aware of.
   Offline signing may require previous outputs to be provided to the wallet.
@@ -1368,17 +1390,63 @@ transaction using a wallet private keys.
 
 **Expected errors:**
 
-- `InvalidArgument`: The serialized transaction can not be decoded.
-
 - `Aborted`: The wallet database is closed.
 
 - `InvalidArgument`: The private passphrase is incorrect.
+
+- `InvalidArgument`: The serialized transaction can not be decoded.
 
 **Stability:** Unstable: It is unclear if the request should include an account,
   and only secrets of that account are used when creating input scripts.  It's
   also missing options similar to Core's signrawtransaction, such as the sighash
   flags and additional keys.
 
+  ___
+
+  #### `SignTransactions`
+
+  The `SignTransactions` method adds transaction input signatures to a set of
+  serialized transactions using a wallet private keys.
+
+  **Request:** `SignTransactionsRequest`
+
+  - `bytes passphrase`: The wallet's private passphrase.
+
+  - `repeated UnsignedTransaction unsigned_transaction`: - The unsigned transactions set.
+
+    **Nested message:** `UnsignedTransaction`
+
+    - `bytes serialized_transaction`: The transaction to add input signatures to.
+
+  - `repeated AdditionalScript additional_scripts`: Additional output scripts of
+  previous outputs spent by the transaction that the wallet may not be aware of.
+  Offline signing may require previous outputs to be provided to the wallet.
+
+    **Nested message:** `AdditionalScript`
+
+    - `bytes transaction_hash`: The transaction hash of the previous output.
+
+    - `uint32 output_index`: The output index of the previous output.
+
+    - `int32 tree`: The transaction tree the previous transaction belongs to.
+
+    - `bytes pk_script`: The output script of the previous output.
+
+  **Response:** `SignTransactionsResponse`
+
+  - `repeated SignedTransaction transactions`: The signed transaction set.
+
+    **Nested message:** `SignedTransaction`
+
+    - `bytes transaction`: The serialized transaction with added input scripts.
+
+  **Expected errors:**
+
+  - `Aborted`: The wallet database is closed.
+
+  - `InvalidArgument`: A serialized transaction can not be decoded.
+
+  - `InvalidArgument`: The private passphrase is incorrect.
 ___
 
 #### `CreateSignature`
