@@ -11,6 +11,7 @@ import (
 	"os"
 	"path/filepath"
 
+	"github.com/jessevdk/go-flags"
 	"github.com/mc-aeq/aeqd/chaincfg/chainhash"
 	"github.com/mc-aeq/aeqd/dcrjson"
 	"github.com/mc-aeq/aeqd/dcrutil"
@@ -21,7 +22,6 @@ import (
 	"github.com/mc-aeq/aeqw/netparams"
 	"github.com/mc-aeq/aeqw/wallet/txauthor"
 	"github.com/mc-aeq/aeqw/wallet/txrules"
-	"github.com/jessevdk/go-flags"
 	"golang.org/x/crypto/ssh/terminal"
 )
 
@@ -42,8 +42,8 @@ func errContext(err error, context string) error {
 
 // Flags.
 var opts = struct {
-	TestNet               bool                `long:"testnet" description:"Use the test decred network"`
-	SimNet                bool                `long:"simnet" description:"Use the simulation decred network"`
+	TestNet               bool                `long:"testnet" description:"Use the test aequator network"`
+	SimNet                bool                `long:"simnet" description:"Use the simulation aequator network"`
 	RPCConnect            string              `short:"c" long:"connect" description:"Hostname[:port] of wallet RPC server"`
 	RPCUsername           string              `short:"u" long:"rpcuser" description:"Wallet RPC username"`
 	RPCPassword           string              `short:"P" long:"rpcpass" description:"Wallet RPC password"`
@@ -89,7 +89,7 @@ func init() {
 	}
 
 	if opts.TestNet && opts.SimNet {
-		fatalf("Multiple decred networks may not be used simultaneously")
+		fatalf("Multiple aequator networks may not be used simultaneously")
 	}
 	var activeNet = &netparams.MainNetParams
 	if opts.TestNet {

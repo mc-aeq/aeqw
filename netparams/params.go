@@ -17,28 +17,28 @@ type Params struct {
 }
 
 // MainNetParams contains parameters specific running aeqw and
-// dcrd on the main network (wire.MainNet).
+// aeqd on the main network (wire.MainNet).
 var MainNetParams = Params{
 	Params:            &chaincfg.MainNetParams,
-	JSONRPCClientPort: "9109",
-	JSONRPCServerPort: "9110",
-	GRPCServerPort:    "9111",
+	JSONRPCClientPort: "",
+	JSONRPCServerPort: "",
+	GRPCServerPort:    "",
 }
 
 // TestNet2Params contains parameters specific running aeqw and
-// dcrd on the test network (version 2) (wire.TestNet2).
+// aeqd on the test network (version 2) (wire.TestNet2).
 var TestNet2Params = Params{
 	Params:            &chaincfg.TestNet2Params,
-	JSONRPCClientPort: "19109",
-	JSONRPCServerPort: "19110",
-	GRPCServerPort:    "19111",
+	JSONRPCClientPort: "19886",
+	JSONRPCServerPort: "19986",
+	GRPCServerPort:    "20086",
 }
 
 // SimNetParams contains parameters specific to the simulation test network
 // (wire.SimNet).
 var SimNetParams = Params{
 	Params:            &chaincfg.SimNetParams,
-	JSONRPCClientPort: "19556",
-	JSONRPCServerPort: "19557",
-	GRPCServerPort:    "19558",
+	JSONRPCClientPort: "19887",
+	JSONRPCServerPort: "19987",
+	GRPCServerPort:    "20087",
 }
